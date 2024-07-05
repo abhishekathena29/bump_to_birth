@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "60230208422",
+    "project_id": "bump-to-birth-d550f",
+    "storage_bucket": "bump-to-birth-d550f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60230208422:android:8b17e6be2f4f4d63e5dd67",
+        "android_client_info": {
+          "package_name": "com.bump_to_birth.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq4TQVMoSp_jsiHN9vh_EhifQjO5bF9cQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
