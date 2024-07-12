@@ -1,4 +1,5 @@
 import 'package:bump_to_birth/core/navigation.dart';
+import 'package:bump_to_birth/feature/doctor/pages/doctor.dart';
 import 'package:bump_to_birth/feature/medicine/pages/medicine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,7 +68,11 @@ class HomePage extends StatelessWidget {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            moveTo(context, MedicinePage());
+                            print(index);
+                            if (index == 0)
+                              moveTo(context, DoctorPage());
+                            else if (index == 1)
+                              moveTo(context, MedicinePage());
                           },
                           child: Card(
                             color: const Color(0xffF9ADB7),
