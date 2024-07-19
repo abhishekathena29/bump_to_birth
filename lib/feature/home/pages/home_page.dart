@@ -1,6 +1,6 @@
 import 'package:bump_to_birth/core/navigation.dart';
 import 'package:bump_to_birth/feature/doctor/pages/doctor.dart';
-import 'package:bump_to_birth/feature/medicine/pages/medicine_page.dart';
+import 'package:bump_to_birth/feature/doctor/pages/pages/medicine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
