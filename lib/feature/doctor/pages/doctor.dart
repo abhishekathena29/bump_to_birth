@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorPage extends StatelessWidget {
   DoctorPage({super.key});
+
   final List<DoctorModel> doctorlist = [
     DoctorModel(
         name: "Asdfg",
@@ -32,6 +33,7 @@ class DoctorPage extends StatelessWidget {
     list.docs.map((doctor) => DoctorModel.fromMap(doctor.data())).toList();
 
   }
+
 
   @override
   Widget build(BuildContext context) {
