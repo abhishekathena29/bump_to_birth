@@ -1,5 +1,7 @@
 import 'package:bump_to_birth/core/navigation.dart';
 import 'package:bump_to_birth/feature/doctor/pages/doctor.dart';
+import 'package:bump_to_birth/feature/forum/pages/forum_page.dart';
+import 'package:bump_to_birth/feature/medical_test/pages/medicine_test_page.dart';
 import 'package:bump_to_birth/feature/medicine/pages/medicine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +20,13 @@ class HomePage extends StatelessWidget {
     "Medicine and Appointments",
     "Test Results",
     "Connect & Chat",
+  ];
+
+  final List<Widget> pageList = [
+    DoctorPage(),
+    MedicinePage(),
+    MedicineTestPage(),
+    ForumPage()
   ];
 
   @override
@@ -68,11 +77,7 @@ class HomePage extends StatelessWidget {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            print(index);
-                            if (index == 0)
-                              moveTo(context, DoctorPage());
-                            else if (index == 1)
-                              moveTo(context, MedicinePage());
+                            moveTo(context, pageList[index]);
                           },
                           child: Card(
                             color: const Color(0xffF9ADB7),

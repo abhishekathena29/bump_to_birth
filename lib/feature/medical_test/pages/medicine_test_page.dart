@@ -1,21 +1,9 @@
 import 'package:bump_to_birth/core/navigation.dart';
-import 'package:bump_to_birth/feature/doctor/model/doctor_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DoctorPage extends StatelessWidget {
-  DoctorPage({super.key});
-
-  final DoctorModel model = DoctorModel(
-      name: "Asdfg",
-      email: "asdfg@gmail.com",
-      hospitalName: "A@Z Hospital",
-      hospitalContact: "8898745874",
-      hospitalLocation: "jfbnfnmfnmbdfsnmbfdmnb",
-      description: "dnm xbvfbmvcxnbmv",
-      expertise: "Heart",
-      addedDate: Timestamp.fromDate(DateTime.now()));
+class MedicineTestPage extends StatelessWidget {
+  const MedicineTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +28,7 @@ class DoctorPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   const Text(
-                    'Doctors List',
+                    'Medicine Test Page',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
@@ -53,10 +41,7 @@ class DoctorPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
+      body: Column(),
     );
   }
 }
