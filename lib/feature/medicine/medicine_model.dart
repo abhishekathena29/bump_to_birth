@@ -22,8 +22,8 @@ class MedicineModel {
 
   factory MedicineModel.fromMap(Map<String, dynamic> map) {
     return MedicineModel(
-      medicine_name: map['name'] ?? '',
-      time: map['email'] ?? '',
+      medicine_name: map['medicine_name'] ?? '',
+      time: map['time'] ?? '',
       addedDate: map['addedDate'],
     );
   }
