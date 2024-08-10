@@ -1,4 +1,6 @@
 import 'package:bump_to_birth/core/navigation.dart';
+import 'package:bump_to_birth/feature/medicine/medicine_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -86,7 +88,18 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                   itemValue = val!;
                 });
               },
-            )
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  var data = MedicineModel(
+                      medicine_name: tabletNameController.text.trim(),
+                      time: itemValue!,
+                      addedDate: Timestamp.fromDate(DateTime.now()));
+                  FirebaseFirestore.instance
+                      .collection('medicine')
+                      .add(data.toMap());
+                },
+                child: Text('submit'))
           ],
         ),
       ),

@@ -1,39 +1,27 @@
 import 'package:bump_to_birth/core/navigation.dart';
-import 'package:bump_to_birth/feature/doctor/model/doctor_model.dart';
+import 'package:bump_to_birth/feature/medicine/medicine_model.dart';
+//import 'package:bump_to_birth/feature/doctor/model/doctor_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DoctorPage extends StatelessWidget {
-  DoctorPage({super.key});
-
-  final List<DoctorModel> doctorlist = [
-    DoctorModel(
-        name: "Asdfg",
-        email: "asdfg@gmail.com",
-        hospitalName: "A@Z Hospital",
-        hospitalContact: "8898745874",
-        hospitalLocation: "jfbnfnmfnmbdfsnmbfdmnb",
-        description: "dnm xbvfbmvcxnbmv",
-        expertise: "Heart",
+class MedicinePage extends StatelessWidget {
+  MedicinePage({super.key});
+  final List<MedicineModel> medicinelist = [
+    MedicineModel(
+        medicine_name: "paracetomol",
+        time: "morning",
         addedDate: Timestamp.fromDate(DateTime.now())),
-    DoctorModel(
-        name: "qwbndqk",
-        email: "qwbndqk@gmail.com",
-        hospitalName: "B@e Hospital",
-        hospitalContact: "1280830918",
-        hospitalLocation: "kjnfqwendn",
-        description: "dnm kjnckdj",
-        expertise: "Heart",
-        addedDate: Timestamp.fromDate(DateTime.now()))
+    MedicineModel(
+        medicine_name: "roxid",
+        time: "night",
+        addedDate: Timestamp.fromDate(DateTime.now())),
   ];
-  getdoctorlist() async {
-    var list = await FirebaseFirestore.instance.collection('doctor').get();
+  getmedicinelist() async {
+    var list = await FirebaseFirestore.instance.collection('medicine').get();
     var result = 
-    list.docs.map((doctor) => DoctorModel.fromMap(doctor.data())).toList();
-
+    list.docs.map((medicine) => MedicineModel.fromMap(medicine.data())).toList();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +46,7 @@ class DoctorPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   const Text(
-                    'Doctors List',
+                    'Medicine List',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
@@ -73,14 +61,14 @@ class DoctorPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          for (var data in doctorlist) {
-            FirebaseFirestore.instance.collection('doctor').add(data.toMap());
+          for (var data in medicinelist) {
+            FirebaseFirestore.instance.collection('medicine').add(data.toMap());
           }
         },
         child: const Icon(Icons.add),
       ),
       body: ListView.builder(
-          itemCount: doctorlist.length,
+          itemCount: medicinelist.length,
           itemBuilder: (context, index) {
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -89,8 +77,8 @@ class DoctorPage extends StatelessWidget {
                   color: Color(0xffF9ADB7)),
               child: Column(
                 children: [
-                  Text(doctorlist[index].name),
-                  Text(doctorlist[index].email)
+                  Text(medicinelist[index].medicine_name),
+                  Text(medicinelist[index].time)
                 ],
               ),
             );
