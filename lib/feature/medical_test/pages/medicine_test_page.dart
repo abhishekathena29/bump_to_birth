@@ -41,7 +41,101 @@ class MedicineTestPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            MedicalTestWidget(
+              title: 'Blood Pressure Level',
+              onpress: () {},
+            ),
+            MedicalTestWidget(
+              title: 'Blood Oxygen Level',
+              onpress: () {},
+            ),
+            MedicalTestWidget(
+              title: 'Fasting Blood Sugar Level',
+              onpress: () {},
+            ),
+            MedicalTestWidget(
+              title: 'After Meal Blood Sugar Level',
+              onpress: () {},
+            ),
+            MedicalTestWidget(
+              title: 'HBA1C Level',
+              onpress: () {},
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MedicalTestWidget extends StatelessWidget {
+  const MedicalTestWidget({
+    super.key,
+    required this.title,
+    this.onpress,
+  });
+
+  final String title;
+  final Function()? onpress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 15),
+                    child: Column(
+                      children: [
+                        Text(
+                          title,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(),
+                        ),
+                        const SizedBox(height: 30),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Check',
+                            style: TextStyle(),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff4B39EF)),
+              child: const Text(
+                'Check',
+                style: TextStyle(color: Colors.white),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
