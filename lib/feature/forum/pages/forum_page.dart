@@ -146,3 +146,14 @@ class ForumQuestionWidget extends StatelessWidget {
     );
   }
 }
+
+
+/*
+add or updating
+  ForumPost post = ForumPost();
+  FirebaseFire......add(post);
+
+
+//retrieve
+data["name"], data["author"]
+ */
