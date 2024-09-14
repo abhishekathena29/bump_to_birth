@@ -1,6 +1,8 @@
 import 'package:bump_to_birth/core/colors.dart';
 import 'package:bump_to_birth/core/navigation.dart';
+import 'package:bump_to_birth/feature/forum/model/forumpost.dart';
 import 'package:bump_to_birth/feature/forum/pages/add_forum_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -50,13 +52,25 @@ class ForumPage extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       body: Expanded(
-        child: ListView.separated(
-          itemCount: 20,
-          itemBuilder: (context, index) {
-            return ForumQuestionWidget();
-          },
-          separatorBuilder: (context, index) => SizedBox(height: 15.h),
-        ),
+        child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('forum').snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var forumlist = snapshot.data!.docs
+                    .map((forum) => ForumPost.fromMap(forum.data()))
+                    .toList();
+                return ListView.separated(
+                  itemCount: forumlist.length,
+                  itemBuilder: (context, index) {
+                    return ForumQuestionWidget(
+                      post: forumlist[index],
+                    );
+                  },
+                  separatorBuilder: (context, index) => SizedBox(height: 15.h),
+                );
+              }
+              return CircularProgressIndicator();
+            }),
       ),
     );
   }
@@ -65,7 +79,9 @@ class ForumPage extends StatelessWidget {
 class ForumQuestionWidget extends StatelessWidget {
   const ForumQuestionWidget({
     super.key,
+    required this.post,
   });
+  final ForumPost post;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +110,7 @@ class ForumQuestionWidget extends StatelessWidget {
             ],
           ),
           Text(
-            '''How do you define "fiction"? What experiences (i.e. previous classes, personal reading, etc.) have helped shape your definitions of "fiction"?''',
+            post.query,
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),

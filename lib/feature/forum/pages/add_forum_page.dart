@@ -1,5 +1,7 @@
 import 'package:bump_to_birth/core/colors.dart';
 import 'package:bump_to_birth/core/navigation.dart';
+import 'package:bump_to_birth/feature/forum/model/forumpost.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -68,7 +70,15 @@ class AddForumPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                ForumPost post = ForumPost(
+                    query: questionController.text,
+                    author: 'pooja',
+                    date: Timestamp.fromDate(DateTime.now()));
+                await FirebaseFirestore.instance
+                    .collection('forum')
+                    .add(post.toMap());
+              },
               child: const Card(
                 color: kPrimaryColor,
                 child: Padding(
